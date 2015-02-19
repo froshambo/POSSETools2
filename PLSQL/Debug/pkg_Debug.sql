@@ -1,5 +1,5 @@
 create or replace package pkg_Debug as
-	/* Standard methods for outputting debug and other logging messages. 
+	/* Standard methods for outputting debug and other logging messages.
 	   Supports logging to file and to console.*/
 
 	G_OUTPUTTYPELINE  char(4) := 'LINE';
@@ -41,7 +41,7 @@ end pkg_Debug;
 /
 
 create or replace package body pkg_Debug as
-	/* Standard methods for outputting debug and other logging messages. 
+	/* Standard methods for outputting debug and other logging messages.
 	   Written for use with POSSE 7.1.5 */
 
 	G_TIMESTAMPFORMAT varchar2(30) := 'mom dd, yyyy hh24:mi:ss';
@@ -61,16 +61,16 @@ create or replace package body pkg_Debug as
          Used to output some header information about the code block currently running:
           - Name of owner, package, and method.
           - Name of parameters and parameter values passed into the method.
-         If the output destination is a file (using POSSE logging), 
-         then create and suspend an app.pkg_Debug pipe. */
+         If the output destination is a file (using POSSE logging),
+         then create and suspend an pkg_Debug pipe. */
     procedure BeginOutput(
     	a_Method varchar2,
     	a_Parameters varchar2,
     	a_Destination char
     ) as
       if a_Destination = G_OUTPUTTYPEFILE then
-        app.pkg_Debug.Enable(G_PIPENAME);
-        app.pkg_Debug.Suspend();
+        pkg_Debug.Enable(G_PIPENAME);
+        pkg_Debug.Suspend();
       end if;
 
       WriteLine(a_Destination, 'Execution entered new code block.');
@@ -84,8 +84,8 @@ create or replace package body pkg_Debug as
          Used to output some footer information about the code block currently running:
           - Name of owner, package, and method.
           - Name of return values and the actual values returned from the method, if any.
-         If the output destination is a file (using POSSE logging), 
-         then shutdown the app.pkg_Debug pipe. */
+         If the output destination is a file (using POSSE logging),
+         then shutdown the pkg_Debug pipe. */
     procedure EndOutput(
     	a_Method varchar2,
     	a_ReturnValues varchar2,
@@ -100,7 +100,7 @@ create or replace package body pkg_Debug as
       end if;
 
       if a_Destination = G_OUTPUTTYPEFILE then
-        app.pkg_Debug.Shutdown(G_PIPENAME);
+        pkg_Debug.Shutdown(G_PIPENAME);
       end if;
     end EndOutput;
 
