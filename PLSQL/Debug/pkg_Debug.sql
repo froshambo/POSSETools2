@@ -47,7 +47,7 @@ create or replace package body pkg_Debug as
 	G_TIMESTAMPFORMAT varchar2(30) := 'mom dd, yyyy hh24:mi:ss';
 	G_OUTPUTTYPELINE  char(4) := 'LINE';
 	G_OUTPUTTYPEFILE  char(4) := 'FILE';
-	G_PIPENAME		  char(4) := 'alan';
+	G_PIPENAME        char(4) := 'alan';
 
     /* CreateTimestamp
          Returns a formatted datetime to be used as the output timestamp. */
