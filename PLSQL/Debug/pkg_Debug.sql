@@ -125,7 +125,7 @@ create or replace package body pkg_Debug as
     	a_Message varchar2
     ) as
     begin
-      app.pkg_debug.putsingleline(a_Message);
+      pkg_Debug.putsingleline(a_Message);
     end WriteToConsole;
 
 	/* WriteToConsole
