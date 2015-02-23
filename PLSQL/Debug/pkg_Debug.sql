@@ -6,7 +6,7 @@ create or replace package pkg_Debug as
 	G_OUTPUTTYPEFILE  char(4) := 'FILE';
 
     -- CreateTimestamp
-    function CreateTimestamp() return varchar2;
+    function CreateTimestamp return varchar2;
 
     -- BeginOutput: Write header information (name of method, parameters, etc)
     procedure BeginOutput(
@@ -51,8 +51,8 @@ create or replace package body pkg_Debug as
 
     /* CreateTimestamp
          Returns a formatted datetime to be used as the output timestamp. */
-    function CreateTimestamp(
-    ) return varchar2 as
+    function CreateTimestamp
+    return varchar2 as
     begin
       return to_char(sysdate, G_TIMESTAMPFORMAT) || ' ';
     end CreateTimestamp;
@@ -68,6 +68,7 @@ create or replace package body pkg_Debug as
     	a_Parameters varchar2,
     	a_Destination char
     ) as
+    begin
       if a_Destination = G_OUTPUTTYPEFILE then
         pkg_Debug.Enable(G_PIPENAME);
         pkg_Debug.Suspend();
@@ -91,6 +92,7 @@ create or replace package body pkg_Debug as
     	a_ReturnValues varchar2,
     	a_Destination char
     ) as
+    begin
       WriteLine(a_Destination, 'Execution of ' || a_Method || ' complete.');
 
       if a_ReturnValues is not null then
@@ -114,7 +116,7 @@ create or replace package body pkg_Debug as
     begin
       if a_Destination = G_OUTPUTTYPELINE then
         WriteToConsole(a_Message);
-      else if a_Destination = G_OUTPUTTYPEFILE then
+      elsif a_Destination = G_OUTPUTTYPEFILE then
         WriteToFile(a_Message);
       end if;
     end WriteLine;
@@ -126,7 +128,7 @@ create or replace package body pkg_Debug as
     ) as
     begin
       pkg_Debug.putsingleline(a_Message);
-    end WriteToConsole;
+    end WriteToFile;
 
 	/* WriteToConsole
          Writes the specified message out to stdout. */
