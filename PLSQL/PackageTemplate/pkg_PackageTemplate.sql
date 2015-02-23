@@ -19,9 +19,9 @@ create or replace package body pkg_PackageTemplate as
     ) as
 
     begin
-        pkg_Debug.BeginOutput('pkg_PackageTemplate.Stub()', 'a_Parameter: "<Value>"', 'LINE');
+        pkg_Debug.BeginOutput('LINE', 'pkg_PackageTemplate.Stub()', 'a_Parameter: "<Value>"');
 
-        pkg_Debug.EndOutput('pkg_PackageTemplate.Stub()', null, 'LINE');
+        pkg_Debug.EndOutput('LINE', 'pkg_PackageTemplate.Stub()', null);
     end;
 
     /* Documentation */
@@ -30,9 +30,9 @@ create or replace package body pkg_PackageTemplate as
     ) return varchar2 as
 
     begin
-        pkg_Debug.BeginOutput('pkg_PackageTemplate.FNStub()', 'a_Parameter: "<Value>"', 'LINE');
+        pkg_Debug.BeginOutput('LINE', 'pkg_PackageTemplate.FNStub()', 'a_Parameter: "<Value>"');
 
-        pkg_Debug.EndOutput('pkg_PackageTemplate.FNStub()', 'Return: "<Value>"', 'LINE');
+        pkg_Debug.EndOutput('LINE', 'pkg_PackageTemplate.FNStub()', 'Return: "<Value>"');
         return null;
     end;
 end;

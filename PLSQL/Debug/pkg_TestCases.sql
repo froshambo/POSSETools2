@@ -2,37 +2,46 @@
 create or replace package pkg_TestCases as
 
     --
-    procedure TestBeginEndNoReturnLineOutput (
+    procedure TestBeginEndNoReturnLineOut (
         a_ParameterA varchar2,
         a_ParameterB number
     );
+
+    function TestBeginEndReturnLineOut (
+        a_ParameterA varchar2,
+        a_ParameterB number
+    ) return varchar2;
 end;
 /
 
 create or replace package body pkg_TestCases as
     /* Documentation */
-    procedure TestBeginEndNoReturnLineOutput (
+    procedure TestBeginEndNoReturnLineOut (
         a_ParameterA varchar2,
         a_ParameterB number
     ) as
 
     begin
-        pkg_Debug.BeginOutput('pkg_TestCases.TestBeginEndNoReturnLineOutput()',
-            'a_ParameterA: "<ValueA>"; a_ParameterB: "<ValueB>"', 'LINE');
+        pkg_Debug.BeginOutput('LINE', 'pkg_TestCases.TestBeginEndNoReturnLineOut()',
+            'a_ParameterA: "<ValueA>"; a_ParameterB: "<ValueB>"');
 
-        pkg_Debug.EndOutput('pkg_TestCases.TestBeginEndNoReturnLineOutput()', null, 'LINE');
+        pkg_Debug.WriteLine('LINE', 'Here is a line of debug output.');
+
+        pkg_Debug.EndOutput('LINE', 'pkg_TestCases.TestBeginEndNoReturnLineOut()', null);
     end;
 
     /* Documentation */
-    -- function X (
-    --     a_Parameter varchar2
-    -- ) return varchar2 as
+    function TestBeginEndReturnLineOut (
+        a_ParameterA varchar2,
+        a_ParameterB number
+    ) return varchar2 as
 
-    -- begin
-    --     pkg_Debug.BeginOutput('pkg_TestCases.X()', 'a_Parameter: "<Value>"', 'LINE');
+    begin
+        pkg_Debug.BeginOutput('LINE', 'pkg_TestCases.TestBeginEndReturnLineOut()',
+            'a_ParameterA: "<ValueA>"; a_ParameterB: "<ValueB>"');
 
-    --     pkg_Debug.EndOutput('pkg_TestCases.X()', 'Return: "<Value>"', 'LINE');
-    --     return
-    -- end;
+        pkg_Debug.EndOutput('LINE', 'pkg_TestCases.TestBeginEndReturnLineOut()', 'Return: "<Value>"');
+        return
+    end;
 end;
 /

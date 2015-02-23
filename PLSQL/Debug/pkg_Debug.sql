@@ -10,16 +10,16 @@ create or replace package pkg_Debug as
 
     -- BeginOutput: Write header information (name of method, parameters, etc)
     procedure BeginOutput(
+    	a_Destination char,
     	a_Method varchar2,
-    	a_Parameters varchar2,
-    	a_Destination char
+      a_Parameters varchar2
     );
 
     -- EndOutput: Write footer information (return values, success/failure)
     procedure EndOutput(
+    	a_Destination char,
     	a_Method varchar2,
-    	a_ReturnValues varchar2,
-    	a_Destination char
+      a_ReturnValues varchar2
     );
 
     -- WriteLine: Write a line of output
@@ -64,9 +64,9 @@ create or replace package body pkg_Debug as
          If the output destination is a file (using POSSE logging),
          then create and suspend an pkg_Debug pipe. */
     procedure BeginOutput(
+    	a_Destination char,
     	a_Method varchar2,
-    	a_Parameters varchar2,
-    	a_Destination char
+      a_Parameters varchar2
     ) as
     begin
       if a_Destination = G_OUTPUTTYPEFILE then
@@ -88,9 +88,9 @@ create or replace package body pkg_Debug as
          If the output destination is a file (using POSSE logging),
          then shutdown the pkg_Debug pipe. */
     procedure EndOutput(
+    	a_Destination char,
     	a_Method varchar2,
-    	a_ReturnValues varchar2,
-    	a_Destination char
+      a_ReturnValues varchar2
     ) as
     begin
       WriteLine(a_Destination, 'Execution of ' || a_Method || ' complete.');
