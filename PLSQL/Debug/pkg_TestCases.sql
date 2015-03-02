@@ -40,6 +40,8 @@ create or replace package body pkg_TestCases as
         pkg_Debug.BeginOutput('LINE', 'pkg_TestCases.TestBeginEndReturnLineOut()',
             'a_ParameterA: "<ValueA>"; a_ParameterB: "<ValueB>"');
 
+        pkg_Debug.WriteLine('LINE', 'Here is also a line of debug output.');
+
         pkg_Debug.EndOutput('LINE', 'pkg_TestCases.TestBeginEndReturnLineOut()', 'Return: "<Value>"');
         return
     end;

@@ -45,8 +45,6 @@ create or replace package body pkg_Debug as
 	   Written for use with POSSE 7.1.5 */
 
 	G_TIMESTAMPFORMAT varchar2(30) := 'mom dd, yyyy hh24:mi:ss';
-	G_OUTPUTTYPELINE  char(4) := 'LINE';
-	G_OUTPUTTYPEFILE  char(4) := 'FILE';
 	G_PIPENAME        char(4) := 'alan';
 
     /* CreateTimestamp
@@ -70,8 +68,8 @@ create or replace package body pkg_Debug as
     ) as
     begin
       if a_Destination = G_OUTPUTTYPEFILE then
-        pkg_Debug.Enable(G_PIPENAME);
-        pkg_Debug.Suspend();
+        app.pkg_Debug.Enable(G_PIPENAME);
+        app.pkg_Debug.Suspend();
       end if;
 
       WriteLine(a_Destination, 'Execution entered new code block.');
@@ -102,7 +100,7 @@ create or replace package body pkg_Debug as
       end if;
 
       if a_Destination = G_OUTPUTTYPEFILE then
-        pkg_Debug.Shutdown(G_PIPENAME);
+        app.pkg_Debug.Shutdown(G_PIPENAME);
       end if;
     end EndOutput;
 
@@ -127,7 +125,7 @@ create or replace package body pkg_Debug as
     	a_Message varchar2
     ) as
     begin
-      pkg_Debug.putsingleline(a_Message);
+      app.pkg_Debug.putsingleline(a_Message);
     end WriteToFile;
 
 	/* WriteToConsole
