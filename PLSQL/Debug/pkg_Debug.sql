@@ -44,7 +44,7 @@ create or replace package body pkg_Debug as
 	/* Standard methods for outputting debug and other logging messages.
 	   Written for use with POSSE 7.1.5 */
 
-	G_TIMESTAMPFORMAT varchar2(30) := 'mom dd, yyyy hh24:mi:ss';
+	G_TIMESTAMPFORMAT varchar2(30) := 'MON dd, yyyy hh24:mi:ss';
 	G_PIPENAME        char(4) := 'alan';
 
     /* CreateTimestamp
@@ -125,7 +125,7 @@ create or replace package body pkg_Debug as
     	a_Message varchar2
     ) as
     begin
-      app.pkg_Debug.putsingleline(a_Message);
+      app. pkg_Debug.putsingleline(a_Message);
     end WriteToFile;
 
 	/* WriteToConsole
