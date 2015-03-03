@@ -1,0 +1,31 @@
+POSSE Tools
+
+Goal: Create a library of tools that support writing scripts that work with POSSE.
+ - Error Handling
+ - Logging
+ - Creation and manipulation of large sets of data
+
+ A PL/SQL api already exists for POSSE, but it could be extended to support common operations, to increase the efficiency of code and package writing, and to reduce error and manual activities.
+
+ Practical Example
+  - Loading Parcel and Address Data
+     - iterating over a set of table rows
+     - creating objects and relationships between objects
+     - updating fields on an object
+     - checking for the existence of objects or rels
+     - data validation
+     - debug output
+     - logical transaction processing and commits/rollbacks.
+     - periodic commits
+     - rerunable code constructs
+
+
+PL/SQL Library Structure
+
+POSSETools
+ - PL/SQL
+    - Debug
+       -
+    - Error Handling
+    - Transaction Management
+
